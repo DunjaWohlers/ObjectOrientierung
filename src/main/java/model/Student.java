@@ -1,5 +1,7 @@
 package model;
+
 import java.time.Instant;
+import java.util.Objects;
 
 public class Student {
     private boolean iLike;
@@ -19,8 +21,8 @@ public class Student {
     }
 
 
-    public String toString(){
-        return "Name: " +  name + "\n" + "Geschlecht: " + sex + "\n" + "Immatrikulationsnummer: " + immatriculationNr;
+    public String toString() {
+        return "Name: " + name + "\n" + "Geschlecht: " + sex + "\n" + "Immatrikulationsnummer: " + immatriculationNr;
     }
 
 
@@ -63,4 +65,18 @@ public class Student {
     public void setBirthday(Instant birthday) {
         this.birthday = birthday;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return iLike == student.iLike && name.equals(student.name) && sex.equals(student.sex) && immatriculationNr.equals(student.immatriculationNr) && birthday.equals(student.birthday);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(iLike, name, sex, immatriculationNr, birthday);
+    }
+
 }
